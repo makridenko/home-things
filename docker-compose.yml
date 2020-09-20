@@ -1,0 +1,20 @@
+version: '3'
+services:
+  client:
+    image: 'node:13.10.1'
+    working_dir: /workdir
+    volumes:
+      - ./clients/web-client:/workdir
+    ports:
+      - "21030:3000"
+    command: ./run.sh
+    stdin_open: true
+  core:
+    build:
+      context: ./core
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./core:/workdir
+    ports:
+      - "21080:8000"
+    command: ./run.sh
