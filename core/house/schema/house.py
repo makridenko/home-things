@@ -6,7 +6,8 @@ from graphene import relay
 from graphene_django.filter import DjangoFilterConnectionField
 from graphene_django.types import DjangoObjectType
 
-from house.models import House
+from house.models import House, HouseForm
+from utils.graphql import BaseMutationCreate
 
 
 class HouseFilter(django_filters.FilterSet):
@@ -25,9 +26,19 @@ class HouseNode(DjangoObjectType):
         )
 
 
+class HouseCreate(BaseMutationCreate):
+    class Meta:
+        model_node = HouseNode
+        model_form = HouseForm
+
+
 class Query(graphene.ObjectType):
     house = relay.Node.Field(HouseNode)
     houses = DjangoFilterConnectionField(
         HouseNode,
         filterset_class=HouseFilter,
     )
+
+
+class Mutation(graphene.ObjectType):
+    house_create = HouseCreate.Field()
