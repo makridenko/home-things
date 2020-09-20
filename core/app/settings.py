@@ -29,6 +29,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # A Django App that adds Cross-Origin Resource Sharing headers to responses
+    'corsheaders',
+
+    # GraphQl-server implementation framework
+    'graphene_django',
+
     # Own applications
     'house',
 ]
@@ -112,3 +118,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+GRAPHENE = {
+    'SCHEMA': 'app.schema.schema',
+}
+
