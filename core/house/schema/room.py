@@ -40,6 +40,6 @@ class Query(graphene.ObjectType):
         filterset_class=RoomFilter,
     )
 
-Паспорт
+
 class Mutation(graphene.ObjectType):
     room_create = RoomCreate.Field()
