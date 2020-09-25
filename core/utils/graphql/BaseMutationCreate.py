@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from graphql_relay import from_global_id
-from graphene_django.types import ErrorType
-
-from django.apps import apps
-
 from .BaseMutation import BaseMutation
+
+from .helpers import CREATE
 
 
 class BaseMutationCreate(BaseMutation):
@@ -13,26 +10,19 @@ class BaseMutationCreate(BaseMutation):
         abstract = True
 
     @classmethod
-    def get_form_data(cls, **data):
-        for obj in data:
-            # Need to get object from id
-            if hasattr(data[obj], 'keys') and 'id' in data[obj].keys():
-                try:
-                    fk_model = apps.get_model(cls.kwargs[obj])
-                except KeyError:
-                    raise Exception(f'Please provide {obj} obj')
+    def __init_subclass_with_meta__(
+        cls,
+        model_node=None,
+        model_form=None,
+        *args,
+        **kwargs,
+    ):
+        cls.action_name = CREATE
 
-                pk = from_global_id(data[obj]['id'])[1]
-                data[obj] = fk_model.objects.get(pk=pk)
-
-        return cls.model_form(**{'data': data})
-
-    @classmethod
-    def mutate_and_get_payload(cls, root, info, **input):
-        form = cls.get_form_data(**input)
-
-        if form.is_valid():
-            obj = form.save()
-            return cls(obj, errors=[])
-        else:
-            return cls(errors=ErrorType.from_errors(form.errors), **{})
+        # Call BaseMutation init method
+        super(BaseMutationCreate, cls).__init_subclass_with_meta__(
+            model_node=model_node,
+            model_form=model_form,
+            *args, 
+            **kwargs,
+        )
