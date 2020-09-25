@@ -6,7 +6,8 @@ from graphene import relay
 from graphene_django.filter import DjangoFilterConnectionField
 from graphene_django.types import DjangoObjectType
 
-from house.models import Place, PlaceForm
+from house.models import Place
+from house.forms import PlaceForm
 from utils.graphql import BaseMutationCreate
 
 

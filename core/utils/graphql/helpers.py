@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 
 
+CREATE = 'create'
+UPDATE = 'update'
+DELETE = 'delete'
+
+
 def to_snake_case(string):
     """
     Changes CamelCase -> camel_case
@@ -23,3 +28,8 @@ def to_camel_case(string):
     return string.split('_')[0] + ''.join((
         w.capitalize() for w in string.split('_')[1:]
     ))
+
+def gen_fk_description(field):
+    field_model = field.queryset.model
+    field_app_label = field_model._meta.app_label
+    return f'ID of {field_app_label}.{field_model.__name__}'
