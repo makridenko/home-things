@@ -83,11 +83,14 @@ class BaseMutation(relay.ClientIDMutation):
         cls.Input = type('Input', (object,), model_input)
 
         # Set attr for return
-        setattr(
-            cls, 
-            to_snake_case(cls.model.__name__), 
-            graphene.Field(cls.model_node),
-        )
+        if cls.action_name == DELETE:
+            setattr(cls, 'result', graphene.Boolean())
+        else:
+            setattr(
+                cls, 
+                to_snake_case(cls.model.__name__), 
+                graphene.Field(cls.model_node),
+            )
 
         # Set attr for errors
         setattr(cls, 'errors', graphene.List(cls.ErrorType))
