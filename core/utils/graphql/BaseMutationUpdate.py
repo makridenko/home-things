@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from .BaseMutation import BaseMutation
-
 from .helpers import UPDATE
+from .BaseMutation import BaseMutation
 
 
 class BaseMutationUpdate(BaseMutation):

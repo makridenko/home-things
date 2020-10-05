@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from .BaseMutation import BaseMutation
-
 from .helpers import CREATE
+from .BaseMutation import BaseMutation
 
 
 class BaseMutationCreate(BaseMutation):

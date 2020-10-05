@@ -8,7 +8,9 @@ from graphene_django.types import DjangoObjectType
 
 from house.models import House
 from house.forms import HouseForm
-from utils.graphql import BaseMutationCreate, BaseMutationUpdate
+from utils.graphql import (
+    BaseMutationCreate, BaseMutationUpdate, BaseMutationDelete
+)
 
 
 class HouseFilter(django_filters.FilterSet):
@@ -39,6 +41,11 @@ class HouseUpdate(BaseMutationUpdate):
         model_form = HouseForm
 
 
+class HouseDelete(BaseMutationDelete):
+    class Meta:
+        model_node = HouseNode
+
+
 class Query(graphene.ObjectType):
     house = relay.Node.Field(HouseNode)
     houses = DjangoFilterConnectionField(
@@ -50,3 +57,4 @@ class Query(graphene.ObjectType):
 class Mutation(graphene.ObjectType):
     house_create = HouseCreate.Field()
     house_update = HouseUpdate.Field()
+    house_delete = HouseDelete.Field()
