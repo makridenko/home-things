@@ -2,9 +2,6 @@
 
 import json
 
-from graphene_django.utils.testing import GraphQLTestCase
-
-from utils.testing.helpers import random_title
 from utils.testing import BaseModelAPITestCase
 
 from house.forms import HouseForm
@@ -39,3 +36,11 @@ mutation houseDelete($input: HouseDeleteInput!) {
     }
 }
 '''
+
+
+class HouseTestCase(BaseModelAPITestCase):
+    class Meta:
+        model_form = HouseForm
+        create_mutation = CREATE_MUTATION
+        update_mutation = UPDATE_MUTATION
+        delete_mutation = DELETE_MUTATION
