@@ -1,0 +1,21 @@
+{
+	"name": "Home-Things core workspace",
+	"dockerComposeFile": [
+		"docker-compose.yml"
+	],
+	"service": "core",
+	"workspaceFolder": "/workdir",
+	"settings": {
+		"terminal.integrated.shell.linux": "bash",
+		"files.trimTrailingWhitespace": true,
+		"files.insertFinalNewline": true,
+		"files.trimFinalNewlines": true
+	},
+	"extensions": [
+		"ms-python.python",
+		"visualstudioexptteam.vscodeintellicode"
+	],
+	"forwardPorts": [8000],
+	"runServices": [],
+	"remoteUser": "home-things"
+}
