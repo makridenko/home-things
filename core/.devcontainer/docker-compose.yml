@@ -1,0 +1,12 @@
+version: '3'
+services:
+  core:
+    user: home-things
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - '..:/workdir'
+    ports:
+      - '8000:8000'
+    command: /bin/bash -c "while true; do echo faking deamon; sleep 60; done"
