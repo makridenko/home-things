@@ -1,0 +1,12 @@
+version: '3'
+services:
+  client:
+    user: node
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - '..:/workdir'
+    ports:
+      - '3000:3000'
+    command: /bin/bash -c "while true; do echo faking deamon; sleep 60; done"
