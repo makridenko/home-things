@@ -7,9 +7,6 @@
 	"workspaceFolder": "/workdir",
 	"settings": {
 		"terminal.integrated.shell.linux": "bash",
-		"files.trimTrailingWhitespace": true,
-		"files.insertFinalNewline": true,
-		"files.trimFinalNewlines": true
 	},
 	"extensions": [
 		"ms-python.python",
