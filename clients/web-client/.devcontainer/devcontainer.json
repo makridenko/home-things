@@ -1,0 +1,16 @@
+{
+    "name": "Home-Things web-client workspace",
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "client",
+    "workspaceFolder": "/workdir",
+    "settings": {
+        "terminal.integrated.shell.linux": "bash",
+    },
+    "extensions": [
+    ],
+    "forwardPorts": [3000],
+    "runServices": [],
+    "remoteUser": "node"
+}
